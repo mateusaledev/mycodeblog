@@ -16,10 +16,12 @@ public class DummyData {
     @Autowired
     BlogRepository blogRepository;
 
-    //@PostConstruct
-    public void savePosts(){
+    @PostConstruct
+    public void savePosts() {
 
         List<Post> postList = new ArrayList<>();
+
+        // Criando instâncias de Post
         Post post1 = new Post();
         post1.setAutor("Deadpool");
         post1.setData(LocalDate.now());
@@ -35,9 +37,10 @@ public class DummyData {
         postList.add(post1);
         postList.add(post2);
 
-        for(Post post: postList){
+        // Salvando os posts no repositório
+        for (Post post : postList) {
             Post postSaved = blogRepository.save(post);
-            System.out.println(postSaved.getId());
+            System.out.println("Post salvo com ID: " + postSaved.getId());
         }
     }
 }
